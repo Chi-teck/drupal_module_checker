@@ -73,7 +73,7 @@ class CheckModulesCommand extends Command {
       return 1;
     }
     catch (ClientException $exception) {
-      $io->error('Could not open ' . $this->site . '/install.php');
+      $io->error('Could not open ' . $this->site . '/core/install.php');
       return 1;
     }
     catch (RequestException $exception) {
