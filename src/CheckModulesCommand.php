@@ -61,19 +61,21 @@ class CheckModulesCommand extends Command {
       $io->error($this->site . ' is not valid URL');
     }
 
-    $this->site = rtrim($this->site, '/');
+    // Normalize the URL.
+    $this->site = rtrim($this->site, '/') . '/';
+
+    $path = parse_url($this->site, PHP_URL_PATH) . 'core/install.php';
 
     $client = new Client(['base_uri' => $this->site]);
-
     try {
-      $response = $client->get('/core/install.php');
+      $response = $client->get($path);
     }
     catch (ConnectException $exception) {
       $io->error('Could not connect to ' . $this->site);
       return 1;
     }
     catch (ClientException $exception) {
-      $io->error('Could not open ' . $this->site . '/core/install.php');
+      $io->error('Could not open ' . $path . ' file.');
       return 1;
     }
     catch (RequestException $exception) {
@@ -113,7 +115,7 @@ class CheckModulesCommand extends Command {
           break 2;
         }
         try {
-          $response = $client->get('/install.php?profile=' . $module);
+          $response = $client->get($path . '?profile=' . $module);
           $io->progressAdvance();
           $checked_counter++;
           $body = (string) $response->getBody();
