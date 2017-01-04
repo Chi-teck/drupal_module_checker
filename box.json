@@ -1,0 +1,33 @@
+{
+  "chmod": "0755",
+  "files": [
+    "vendor/autoload.php",
+    "src/CheckModulesCommand.php",
+    "data/core_modules.txt",
+    "data/contributed_modules.txt"
+  ],
+  "finder": [
+    {
+      "name": "*",
+      "in": "src",
+      "exclude": ["Tests", "Box"]
+    },
+    {
+      "name": "*.php",
+      "in": [
+        "vendor"
+        ],
+      "exclude": [
+        "Tests",
+        "test"
+      ]
+    }
+  ],
+  "main": "bin/drupal_module_checker.php",
+  "output": "drupal_module_checker.phar",
+
+  "compactors": [
+    "Herrera\\Box\\Compactor\\Php"
+  ],
+  "stub": true
+}

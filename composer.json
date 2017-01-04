@@ -1,0 +1,14 @@
+{
+  "name": "chi_teck/drupal_module_checker",
+  "description": "Module checker for Drupal 8",
+  "license": "GPL-2.0+",
+  "autoload": {
+    "psr-4": {
+      "DrupalModuleChecker\\": "src"
+    }
+  },
+  "require": {
+    "symfony/console": "^3.2",
+    "guzzlehttp/guzzle": "^6.2"
+  }
+}
