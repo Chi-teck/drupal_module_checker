@@ -1,6 +1,6 @@
 # Drupal Module Checker
 
-A simple console tool to scan enabled modules on Drupal 8 sites.
+A simple console tool to scan contributed modules on Drupal 8 sites.
 
 ## Installation
 
@@ -15,5 +15,5 @@ $ php drupal_module_checker.phar http://drupal.com
 
 ## Options
 
-* `limit` - define how many modules should be checked
-* `no-core` - filter out modules provided by Drupal core
+`--limit` - defines how many modules should be checked.
+

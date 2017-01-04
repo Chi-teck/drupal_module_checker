@@ -38,13 +38,6 @@ class CheckModulesCommand extends Command {
         InputOption::VALUE_OPTIONAL,
         'How many modules should be checked?',
         100
-      )
-      ->addOption(
-        'no-core',
-        NULL,
-        InputOption::VALUE_OPTIONAL,
-        'Filter out modules provided by drupal core.',
-        FALSE
       );
 
   }
@@ -93,47 +86,40 @@ class CheckModulesCommand extends Command {
 
     $data_dir = __DIR__ . '/../data';
 
-    // Code `drush pml --fields=name --type=module --status=enabled --core | sed 's/.*(//' | sed 's/).*//'`.
-    $all_modules['core'] = $input->getOption('no-core')
-      ? []
-      : file($data_dir . '/core_modules.txt', FILE_IGNORE_NEW_LINES);
-
     // See http://modulecharts.org/chart-web.json.
-    $all_modules['contributed'] = file($data_dir . '/contributed_modules.txt', FILE_IGNORE_NEW_LINES);
+    $modules = file($data_dir . '/modules.txt', FILE_IGNORE_NEW_LINES);
 
     $installed_modules = [];
     $checked_counter = 0;
     $installed_counter = 0;
     $limit = (int) $input->getOption('limit');
 
-    $total_modules = min($limit, count($all_modules, COUNT_RECURSIVE));
+    $total_modules = min($limit, count($modules));
     $io->progressStart($total_modules);
 
-    foreach ($all_modules as $type => $modules) {
-      foreach ($modules as $module) {
-        if ($checked_counter == $input->getOption('limit')) {
-          break 2;
-        }
-        try {
-          $response = $client->get($path . '?profile=' . $module);
-          $io->progressAdvance();
-          $checked_counter++;
-          $body = (string) $response->getBody();
+    foreach ($modules as $module) {
+      if ($checked_counter == $input->getOption('limit')) {
+        break;
+      }
+      try {
+        $response = $client->get($path . '?profile=' . $module);
+        $io->progressAdvance();
+        $checked_counter++;
+        $body = (string) $response->getBody();
 
-          if (self::getModuleStatus($module, $body)) {
-            $installed_counter++;
-            $url = 'https://www.drupal.org/project/' . ($type == 'contributed' ? $module : 'drupal');
-            $installed_modules[] = [$installed_counter, $module, $url];
-          }
+        if (self::getModuleStatus($module, $body)) {
+          $installed_counter++;
+          $url = 'https://www.drupal.org/project/' . $module;
+          $installed_modules[] = [$installed_counter, $module, $url];
         }
-        catch (RequestException $exception) {
-          $io->error('The site cannot be checked.');
-          return 1;
-        }
-        catch (RuntimeException $exception) {
-          $io->error('The site cannot be checked.');
-          return 1;
-        }
+      }
+      catch (RequestException $exception) {
+        $io->error('The site cannot be checked.');
+        return 1;
+      }
+      catch (RuntimeException $exception) {
+        $io->error('The site cannot be checked.');
+        return 1;
       }
     }
 
