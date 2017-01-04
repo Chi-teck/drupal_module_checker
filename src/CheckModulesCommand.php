@@ -61,10 +61,12 @@ class CheckModulesCommand extends Command {
       $io->error($this->site . ' is not valid URL');
     }
 
+    $this->site = rtrim($this->site, '/');
+
     $client = new Client(['base_uri' => $this->site]);
 
     try {
-      $response = $client->get('/install.php?profile=non_existing_module');
+      $response = $client->get('/core/install.php');
     }
     catch (ConnectException $exception) {
       $io->error('Could not connect to ' . $this->site);
@@ -81,7 +83,8 @@ class CheckModulesCommand extends Command {
 
     $body = (string) $response->getBody();
 
-    if (self::getModuleStatus('non_existing_module', $body)) {
+    // Find some untranslatable string to make sure the site can be checked.
+    if (strpos($body, '<em>default.settings.php</em>') === FALSE) {
       $io->error('The site cannot be checked.');
       return 1;
     }
@@ -146,7 +149,7 @@ class CheckModulesCommand extends Command {
    *   True if the module is installed false otherwise.
    */
   protected static function getModuleStatus($module, &$body) {
-    if (strpos($body, 'Drupal already installed') === FALSE) {
+    if (strpos($body, '<em>default.settings.php</em>') === FALSE) {
       throw new RuntimeException();
     }
     return strpos($body, 'The following module is missing from the file system: ' . $module) === FALSE;
