@@ -3,7 +3,7 @@
   "files": [
     "vendor/autoload.php",
     "src/CheckModulesCommand.php",
-    "data/core_modules.txt",
+    "data/modules.txt",
     "data/contributed_modules.txt"
   ],
   "finder": [
