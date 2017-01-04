@@ -10,7 +10,7 @@ $ wget https://github.com/Chi-teck/drupal_module_checker/releases/download/Dev/d
 
 ## Usage
 ```bash
-$ php drupal_module_checker.phar
+$ php drupal_module_checker.phar http://drupal.com
 ```
 
 ## Options
