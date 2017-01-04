@@ -16,4 +16,4 @@ $ php drupal_module_checker.phar http://drupal.com
 ## Options
 
 * `limit` - define how many modules should be checked
-* `no-core` - filter out modules provided by drupal core
+* `no-core` - filter out modules provided by Drupal core
