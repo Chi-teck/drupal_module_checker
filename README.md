@@ -3,14 +3,14 @@
 A simple console tool to scan enabled modules on Drupal 8 sites.
 
 ## Installation
-```
 
-
+```bash
+$ wget https://github.com/Chi-teck/drupal_module_checker/releases/download/Dev/drupal_module_checker.phar
 ```
 
 ## Usage
-```
-$ php path/to/drupal_module_checker.phar
+```bash
+$ php drupal_module_checker.phar
 ```
 
 ## Options
