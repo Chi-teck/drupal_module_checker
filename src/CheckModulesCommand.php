@@ -117,10 +117,7 @@ class CheckModulesCommand extends Command {
         $io->error('The site cannot be checked.');
         return 1;
       }
-      catch (RuntimeException $exception) {
-        $io->error('The site cannot be checked.');
-        return 1;
-      }
+
     }
 
     $io->progressFinish();
