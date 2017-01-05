@@ -97,10 +97,8 @@ flexslider
 swiftmailer
 migrate_tools
 media_entity_instagram
-migrate_plus
 panelizer
 entityqueue
-migrate_tools
 views_bootstrap
 typed_data
 youtube
@@ -175,7 +173,6 @@ allowed_formats
 piwik
 ultimate_cron
 eck
-linkit
 markup
 maxlength
 ckeditor_font
@@ -194,7 +191,6 @@ shield
 robotstxt
 key
 iframe
-bootstrap_layouts
 slick_extras
 eform
 cors
@@ -235,7 +231,6 @@ session_limit
 config_devel
 entity_print
 flippy
-field_collection
 social_login
 fieldblock
 title
@@ -309,7 +304,6 @@ inline_responsive_images
 css_editor
 acl
 simple_oauth
-migrate_upgrade
 simplesamlphp_auth
 double_field
 galleryformatter
@@ -318,7 +312,6 @@ dropdown_language
 ultimenu
 super_login
 similarterms
-simple_sitemap
 redis
 password_policy
 name
@@ -327,7 +320,6 @@ memcache_storage
 advanced_text_formatter
 menu_admin_per_menu
 stage_file_proxy
-masquerade
 simplenews_scheduler
 nice_menus
 contact_storage_export
@@ -418,7 +410,6 @@ single_page_site
 permissions_by_term
 toolbar_themes
 google_analytics_reports
-migrate_upgrade
 persistent_login
 git_deploy
 twig_xdebug
@@ -458,7 +449,6 @@ like_and_dislike
 footnotes
 twig_extender
 l10n_client
-migrate_plus
 footermap
 styled_google_map
 require_login
@@ -493,7 +483,6 @@ jsonapi
 field_formatter
 jw_player
 hook_post_action
-webform
 votingapi_widgets
 cas_attributes
 views_timelinejs
