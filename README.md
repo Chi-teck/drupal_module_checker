@@ -15,5 +15,5 @@ $ php drupal_module_checker.phar http://drupal.com
 
 ## Options
 
-`--limit` - defines how many modules should be checked.
+`limit` - defines how many modules should be checked.
 
