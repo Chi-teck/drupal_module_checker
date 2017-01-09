@@ -476,7 +476,6 @@ migrate_api
 username_enumeration_prevention
 rest_api_doc
 responsive_tables_filter
-big_pipe
 supercache
 slick_video
 jsonapi
